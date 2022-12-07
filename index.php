@@ -1,39 +1,62 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
 
-include("Vehicule.php");
-include("Auteur.php");
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Livre_POO</title>
+</head>
 
-?>
-    <h1 style="text-align: center">Véhicule :</h1>
-<?php
+<body>
+  <div class="wrapper">
 
-$gtr34 = new Vehicule("voiture", "Nissan", "grise", 0);
-echo $gtr34;
-$gtr34->faireUnTrajet(100);
-$gtr34->faireMarcheArriere(30);
+    <div class="title">
+      <h1>Livre</h1>
+    </div>
 
-// Pour cet exercice , on souhaite afficher la bibliographie d'un auteur.
+    <?php
 
-// Partie 1 :
+    spl_autoload_register(function ($class_name) {
+      include $class_name . ".php";
+    });
+    // require_once("Auteur.php");
+    // require_once("Livre.php");
+    
+    // Instancier un auteur
+    $king = new Auteur("KING", "Stephen", "Homme", "1947-09-21");
 
-// Un auteur a un nom, un prénom, un sexe (binaire pour cet exercice), une date de naissance et des livres à son actif.
+    // Instancier des livres
+    $livreDingue = new Livre("Dingue", 2124, 3455, 49.99, $king);
+    $livreCool = new Livre("Cool", 1994, 343, 29.99, $king);
+    $livreFabuleux = new Livre("Fabuleux", 1944, 385, 69.99, $king);
+    echo "<br/>";
+    ?>
+    <div class="biblio">
 
-?>
-    <h1 style="text-align: center">Auteur :</h1>
-<?php
+      <?php
+      echo $king->afficherBibliographie();
+      // echo $livreDingue->getTitre();
+      // echo "<br/>";
+      // echo $king->getAge();
+      // echo "<br/>";
+      // echo $king;
+      // echo "<br/>";
+      // echo $livreDingue;
+      // echo "<br/>";
+      // echo "<br/>";
+      // print("<pre>".print_r($livreDingue,true)."</pre>"); 
+      // echo "<br/>";
+      // print("<pre>".print_r($king,true)."</pre>");
+      // echo "<br/>";
+      // echo $livreDingue->getAuteur();
+      ?>
+    </div>
 
-$auteur1 = new Auteur("toto", "test", "homme", "12/12/2001");
-echo "<br/><br/>". $auteur1;
-$auteur2 = new Auteur("tata", "teste", "femme", "12/12/2001");
-echo "<br/><br/>". $auteur2;
 
+  </div>
 
-// Un livre est composé d'un titre, d'une année de parution, d'un nombre de pages et d'un prix.
+</body>
 
-
-
-// Créer les classes et les attributs permettant de manipuler de tels objets.
-
-
-
-// Ajouter les getters et setters à ces deux classes (manuellement !).
+</html>
